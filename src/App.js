@@ -1,25 +1,24 @@
-// import logo from './logo.svg';
+// src/App.js
 import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min';
-import Header from './components/header';
-import TabMenu from './components/tab';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import React, { useState } from 'react';
+import Auth from './components/Auth';
+import Dashboard from './components/Landing';
+import { auth } from './firebase';
 
 function App() {
+  const [user, setUser] = useState(null);
+
+  auth.onAuthStateChanged((user) => {
+    if (user) {
+      setUser(user);
+    } else {
+      setUser(null);
+    }
+  });
+
   return (
     <div className="App">
-       <Header />
-       <br />
-        <Container fluid="md">
-        <Row>
-          <Col>
-            <TabMenu />
-          </Col>
-        </Row>
-      </Container>
+      {user ? <Dashboard user={user} /> : <Auth setUser={setUser} />}
     </div>
   );
 }
