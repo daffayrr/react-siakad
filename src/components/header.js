@@ -4,10 +4,17 @@ import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import AlmaAta from '../assets/main_logo_white.png'
 import { auth } from '../firebase';
+import { useState } from 'react';
+import Modal from 'react-bootstrap/Modal';
 
 
 
 function Header () {
+
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
     const handleLogout = async () => {
         try {
@@ -31,9 +38,29 @@ function Header () {
                 />
             </Navbar.Brand>
             <Navbar.Toggle />
+
+  
+
             <Navbar.Collapse className="justify-content-end" >
             <Navbar.Text variant='Light'>
-             <Button onClick={handleLogout} variant='danger'>Logout</Button>
+
+            <Button variant="danger" onClick={handleShow}>
+              Logout
+            </Button>
+
+            <Modal show={show} onHide={handleClose}>
+              <Modal.Header closeButton>
+                <Modal.Title>Konfirmasi</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>Apakah anda yakin untuk LOGOUT ?</Modal.Body>
+              <Modal.Footer>
+                <Button variant="secondary" onClick={handleClose}>
+                  Close
+                </Button>
+                <Button onClick={handleLogout} variant='danger'>Logout
+                </Button>
+              </Modal.Footer>
+            </Modal>
             </Navbar.Text>
             </Navbar.Collapse>
             </Container>

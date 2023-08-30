@@ -3,6 +3,7 @@ import Tabs from 'react-bootstrap/Tabs';
 import Dashboard from '../pages/Dashboard';
 import Jadwal from '../pages/Jadwal';
 import Penilaian from '../pages/Penilaian';
+import Kalender from '../pages/Kalender';
 
 function TabMenu() {
     return (
@@ -19,6 +20,9 @@ function TabMenu() {
         </Tab>
         <Tab eventKey="penilaian" title="Penilaian">
           <Penilaian />
+        </Tab>
+        <Tab eventKey="kalender" title="Kalender">
+          <Kalender />
         </Tab>
       </Tabs>
     );
