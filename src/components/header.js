@@ -7,8 +7,6 @@ import { auth } from '../firebase';
 import { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 
-
-
 function Header () {
 
   const [show, setShow] = useState(false);
